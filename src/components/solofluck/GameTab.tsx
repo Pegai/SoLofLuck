@@ -457,8 +457,8 @@ export function GameTab() {
     : freePlays
   const pending = playerState?.pending ?? false
   const needsDelegateSetup = isActive && !testWalletOn && !delegateActive
-  // Ücretsiz spinler signer'a gerek yok; ücretli spinler gerekli
-  const canPlay = freeSpinsState.spinsRemaining > 0 || (spinAuthoritySigner !== null && spinsRemaining > 0)
+  // Cüzdan bağlı olmalı, sonra ücretsiz veya ücretli spinler kullanılabilir
+  const canPlay = isActive && (freeSpinsState.spinsRemaining > 0 || (spinAuthoritySigner !== null && spinsRemaining > 0))
   const delegateLowBalance =
     delegateActive && delegateBalance !== null && lamportsToSol(delegateBalance) < GAME_CONFIG.delegateLowBalanceSol
 
@@ -580,11 +580,13 @@ export function GameTab() {
             >
               {busy === 'play'
                 ? 'Gönderiliyor...'
-                : spinsRemaining > 0
-                  ? `🎰 Çevir (Kalan: ${spinsRemaining} spin)`
-                  : needsDelegateSetup
-                    ? '🔒 Oyun cüzdanını etkinleştir (spin satın al)'
-                    : '🔒 Spin hakkın kalmadı — paket satın al'}
+                : !isActive
+                  ? '🔒 Cüzdanını bağla'
+                  : freeSpinsState.spinsRemaining > 0 || spinsRemaining > 0
+                    ? `🎰 Çevir (Kalan: ${freeSpinsState.spinsRemaining + spinsRemaining} spin)`
+                    : needsDelegateSetup
+                      ? '🔒 Oyun cüzdanını etkinleştir (spin satın al)'
+                      : '🔒 Spin hakkın kalmadı — paket satın al'}
             </button>
           )}
 
