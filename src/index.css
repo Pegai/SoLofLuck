@@ -2148,3 +2148,22 @@ button {
   font-weight: 700;
   color: #4ade80;
 }
+
+/* Presale operasyon payı açıklaması — gizlenmemesi gereken bir bilgi
+   olduğu için normal metin boyutunda, uyarı kutusu gibi değil ama
+   göz ardı edilemeyecek bir kontrastla gösteriliyor. */
+.luck-presale__ops-note {
+  margin: 0.75rem 0 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-left: 3px solid #22d3ee;
+  border-radius: 0.6rem;
+  background: rgba(15, 23, 42, 0.55);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.luck-presale__ops-note strong {
+  color: #e2e8f0;
+}

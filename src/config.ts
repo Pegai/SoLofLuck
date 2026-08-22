@@ -96,6 +96,26 @@ export const LUCK_TOKEN = {
 // göndermesini önlemek için kasıtlı bir güvenlik freni.
 export const PRESALE_WALLET = '' // ör: 'YourPresaleWalletAddressHere...'
 
+// ---------------------------------------------------------------------------
+// Operasyon (gider) payı
+// ---------------------------------------------------------------------------
+// Token yayınlanana kadar oluşan giderleri (Raydium havuz açma ücreti, token
+// mint + metadata, RPC aboneliği, alan adı, pazarlama) karşılamak için her
+// presale katkısından ayrılan pay: 777 / 100.000 = %0.777 — projenin 777
+// temasıyla uyumlu, kasıtlı olarak küçük tutulmuş bir oran.
+//
+// ÖNEMLİ — bu pay PRESALE_WALLET'a HİÇ GİRMEZ: katkının içinden AYNI işlemde
+// ayrı bir transfer olarak doğrudan bu cüzdana gider. Böylece TGE'de likidite
+// havuzuna konacak tutar, presale cüzdanının bakiyesinin ta kendisi olur —
+// elle bir ayıklama/çıkarma yapmak gerekmez ve pay yanlışlıkla havuza
+// karışamaz. Katkıda bulunan kişi, imzalamadan önce cüzdanında her iki
+// alıcıyı ve tutarı da görür.
+//
+// Boş bırakılırsa pay hiç alınmaz, katkının %100'ü presale cüzdanına gider.
+export const PRESALE_OPS_WALLET = '' // ör: 'YourOpsWalletAddressHere...'
+export const PRESALE_OPS_FEE_NUM = 777
+export const PRESALE_OPS_FEE_DEN = 100_000
+
 // Sabit paket seçeneklerinde her 0.5 SOL için kazanılan çekiliş bileti.
 export const PRESALE_TICKET_UNIT_SOL = 0.5
 
